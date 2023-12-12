@@ -29,6 +29,11 @@ class TodosController < ApplicationController
     end
   end
 
+  def destroy
+    Todo.find(params[:id]).destroy
+    redirect_to root_url, status: :see_other
+  end
+
   private
 
     def todo_params
