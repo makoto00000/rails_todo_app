@@ -10,7 +10,7 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(todo_params)
     if @todo.save
-      redirect_to root_path
+      redirect_to root_url
     else
       render 'new', status: :unprocessable_entity
     end
@@ -18,6 +18,15 @@ class TodosController < ApplicationController
 
   def edit
     @todo = Todo.find(params[:id])
+  end
+
+  def update
+    @todo = Todo.find(params[:id])
+    if @todo.update(todo_params)
+      redirect_to root_url
+    else
+      render 'edit', status: :unprocessable_entity
+    end
   end
 
   private
